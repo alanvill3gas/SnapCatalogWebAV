@@ -23,48 +23,57 @@
  * 
  */
 
+const MCLAREN_URL = "https://media.cnn.com/api/v1/images/stellar/prod/170509161442-mclaren-720s.jpg?q=w_2187,h_1458,x_0,y_0,c_fill";
+const AMG_GT_URL = "https://cdn-ds.com/stock/2021-Mercedes-Benz-AMG-GT-AMG-GT-Black-Series-Charlotte-NC/seo/ECL3587-W1KYJ8BA9MA041785/sz_271104/6a23aba3ce6905fa6d599e78e90fecf2.jpg";
+const URUS_URL = "https://anrky.com/wp-content/uploads/2020/01/ANRKY-Wheels-Lamborghini-Urus-AN30-SeriesTHREE_49101914761_o.jpg";
+const XB7_URL = "https://www.insidehook.com/wp-content/uploads/2023/10/2023-bmw-alpina-xb7-suv.jpg?fit=1200%2C800";
+const CYBER_TRUCK_URL = "https://upload.wikimedia.org/wikipedia/commons/thumb/c/ce/Cybertruck-fremont-cropped.jpg/640px-Cybertruck-fremont-cropped.jpg";
+const CAYMAN_URL = "https://www.pcarmarket.com/static/media/uploads/galleries/photos/uploads/galleries/2007-cayman-s-miami-blue/.thumbnails/IMG_20200618_181211.jpg/IMG_20200618_181211-tiny-2048x0-0.5x0.jpg";
+const CULLINAN_URL = "https://images.clickdealer.co.uk/vehicles/3377/3377661/large2/70955337.jpg";
+const C8_URL = "https://www.motortrend.com/uploads/2021/09/001-2021-chevrolet-corvette-stingray-c8-passenger-side-front-three-quarter-roof.jpg";
+const RCF_URL = "https://static01.nyt.com/images/2016/02/10/multimedia/drvien-2016-lexus-rcf-alt/drvien-2016-lexus-rcf-superJumbo.jpg";
+const FOCUS_URL = "https://media.carsandbids.com/cdn-cgi/image/width=2080,quality=70/d9b636c2ec84ddc3bc7f2eb32861b39bdd5f9683/photos/rGlyXO6w-v0rg_Dc5Nl-(edit).jpg?t=169802074830";
 
-const FRESH_PRINCE_URL = "https://upload.wikimedia.org/wikipedia/en/3/33/Fresh_Prince_S1_DVD.jpg";
-const CURB_POSTER_URL = "https://m.media-amazon.com/images/M/MV5BZDY1ZGM4OGItMWMyNS00MDAyLWE2Y2MtZTFhMTU0MGI5ZDFlXkEyXkFqcGdeQXVyMDc5ODIzMw@@._V1_FMjpg_UX1000_.jpg";
-const EAST_LOS_HIGH_POSTER_URL = "https://static.wikia.nocookie.net/hulu/images/6/64/East_Los_High.jpg";
-
-// This is an array of strings (TV show titles)
-let titles = [
-    "Fresh Prince of Bel Air",
-    "Curb Your Enthusiasm",
-    "East Los High"
+let carData = [
+    { title: "Mclaren 720s", imageURL: MCLAREN_URL },
+    { title: "Mercedes AMG GT", imageURL: AMG_GT_URL },
+    { title: "Lambirghini Urus", imageURL: URUS_URL },
+    { title: "BMW Aplina XB7", imageURL: XB7_URL },
+    { title: "Tesla Cyber Truck", imageURL: CYBER_TRUCK_URL },
+    { title: "Porsche Cayman", imageURL: CAYMAN_URL },
+    { title: "Rolls Royce Cullinan", imageURL: CULLINAN_URL },
+    { title: "Chevy C8", imageURL: C8_URL },
+    { title: "Lexus RCF", imageURL: RCF_URL },
+    { title: "Ford Focus RS", imageURL: FOCUS_URL }
 ];
-// Your final submission should have much more data than this, and 
-// you should use more than just an array of strings to store it all.
 
+let funFacts = [
+    "It was the first supercar car I drove",
+    "Had a very load sounding exhaust",
+    "I drove one on my first day as valet",
+    "Surprisingly cost 100K+",
+    "It was the first one to be parked on property",
+    "It was a manual and I unfortunately stalled it",
+    "The floor matts in the carr looked like grass",
+    "Is my favorite american sports car",
+    "Is my brothers car",
+    "I wanted one back in high school"
+];
 
-// This function adds cards the page to display the data in the array
 function showCards() {
     const cardContainer = document.getElementById("card-container");
     cardContainer.innerHTML = "";
     const templateCard = document.querySelector(".card");
     
-    for (let i = 0; i < titles.length; i++) {
-        let title = titles[i];
-
-        // This part of the code doesn't scale very well! After you add your
-        // own data, you'll need to do something totally different here.
-        let imageURL = "";
-        if (i == 0) {
-            imageURL = FRESH_PRINCE_URL;
-        } else if (i == 1) {
-            imageURL = CURB_POSTER_URL;
-        } else if (i == 2) {
-            imageURL = EAST_LOS_HIGH_POSTER_URL;
-        }
-
-        const nextCard = templateCard.cloneNode(true); // Copy the template card
-        editCardContent(nextCard, title, imageURL); // Edit title and image
-        cardContainer.appendChild(nextCard); // Add new card to the container
-    }
+    carData.forEach(function(car, index) {
+        const nextCard = templateCard.cloneNode(true); 
+        const funFact = funFacts[index];
+        editCardContent(nextCard, car.title, car.imageURL, funFact); 
+        cardContainer.appendChild(nextCard); 
+    });
 }
 
-function editCardContent(card, newTitle, newImageURL) {
+function editCardContent(card, newTitle, newImageURL, funFact) {
     card.style.display = "block";
 
     const cardHeader = card.querySelector("h2");
@@ -72,23 +81,41 @@ function editCardContent(card, newTitle, newImageURL) {
 
     const cardImage = card.querySelector("img");
     cardImage.src = newImageURL;
-    cardImage.alt = newTitle + " Poster";
+    cardImage.alt = "Description of " + newTitle + ": " + newImageURL;
 
-    // You can use console.log to help you debug!
-    // View the output by right clicking on your website,
-    // select "Inspect", then click on the "Console" tab
+    const funFactElement = card.querySelector(".fun-fact");
+    funFactElement.textContent = funFact;
+
     console.log("new card:", newTitle, "- html: ", card);
 }
 
-// This calls the addCards() function when the page is first loaded
 document.addEventListener("DOMContentLoaded", showCards);
 
-function quoteAlert() {
-    console.log("Button Clicked!")
-    alert("I guess I can kiss heaven goodbye, because it got to be a sin to look this good!");
+function removeLastCard() {
+    carData.pop();
+    funFacts.pop();
+    showCards(); 
 }
 
-function removeLastCard() {
-    titles.pop(); // Remove last item in titles array
-    showCards(); // Call showCards again to refresh
+function addCarFromInput() {
+    const carNameInput = document.getElementById("carName");
+    const funFactInput = document.getElementById("funFact");
+    const carDescriptionInput = document.getElementById("carDescription");
+
+    const carName = carNameInput.value.trim();
+    const funFact = funFactInput.value.trim();
+    const description = carDescription.value.trim();
+
+    if (carName !== "" && funFact !== "") {
+        const newCar = { title: carName, imageURL: description }; 
+        carData.push(newCar);
+        funFacts.push(funFact);
+        showCards();
+
+        carNameInput.value = "";
+        funFactInput.value = "";
+        carDescriptionInput.value = "";
+    } else {
+        alert("Please enter both a car name and a fun fact.");
+    }
 }
