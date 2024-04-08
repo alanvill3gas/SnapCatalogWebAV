@@ -49,14 +49,14 @@ let carData = [
 
 let funFacts = [
     "It was the first supercar car I drove",
-    "Had a very load sounding exhaust",
+    "It had a very load sounding exhaust",
     "I drove one on my first day as valet",
     "Surprisingly cost 100K+",
     "It was the first one to be parked on property",
     "It was a manual and I unfortunately stalled it",
-    "The floor matts in the carr looked like grass",
-    "Is my favorite american sports car",
-    "Is my brothers car",
+    "The floor matts in the car looked like grass",
+    "It's my favorite american sports car",
+    "It's my brothers car",
     "I wanted one back in high school"
 ];
 
@@ -67,7 +67,7 @@ function showCards() {
     
     carData.forEach(function(car, index) {
         const nextCard = templateCard.cloneNode(true); 
-        const funFact = funFacts[index];
+        let funFact = funFacts[index];
         editCardContent(nextCard, car.title, car.imageURL, funFact); 
         cardContainer.appendChild(nextCard); 
     });
@@ -98,16 +98,16 @@ function removeLastCard() {
 }
 
 function addCarFromInput() {
-    const carNameInput = document.getElementById("carName");
-    const funFactInput = document.getElementById("funFact");
-    const carDescriptionInput = document.getElementById("carDescription");
+    let carNameInput = document.getElementById("carName");
+    let funFactInput = document.getElementById("funFact");
+    let carDescriptionInput = document.getElementById("carDescription");
 
-    const carName = carNameInput.value.trim();
-    const funFact = funFactInput.value.trim();
-    const description = carDescription.value.trim();
+    let carName = carNameInput.value.trim();
+    let funFact = funFactInput.value.trim();
+    let description = carDescriptionInput.value.trim();
 
     if (carName !== "" && funFact !== "") {
-        const newCar = { title: carName, imageURL: description }; 
+        let newCar = { title: carName, imageURL: description }; 
         carData.push(newCar);
         funFacts.push(funFact);
         showCards();
