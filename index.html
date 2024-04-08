@@ -2,36 +2,37 @@
 <html>
 
 <head>
-    <title>LA TV Shows | Home</title>
-    <meta name="description" content="A Catalog of Shows Set in Los Angeles">
+    <title>Cool Cars Driven</title>
+    <meta name="description" content="A Catalog of Cars I've Driven">
     <link rel="stylesheet" href="style.css" />
     <script type="text/javascript" src="scripts.js"></script>
 </head>
 
 <body>
     <header class="main-header">
-        <h1 class="title">LA TV Shows</h1>
+        <h1 class="title">Cars Driven as a Valet</h1>
     </header>
     <div id="card-container">
         
     </div>
     <div class="card" style="display: none;">
         <div class="card-content">
-            <h2>TV Show Title</h2>
-            <img src="" alt="TV Show Poster">
+            <h2>Car Names</h2>
+            <img src="" alt="Car Name">
             <ul>
-                <li>Bullet Point 1</li>
-                <li>Bullet Point 2</li>
-                <li>Bullet Point 3</li>
+                <li class="fun-fact">Fun Fact</li>
             </ul>
         </div>
     </div>
     <div class="footer">
-        <button onclick="quoteAlert();">
-            Get A Quote!
+        <input type="text" id="carName" placeholder="Enter car name">
+        <input type="text" id="carDescription" placeholder="Enter car's description">
+        <input type="text" id="funFact" placeholder="Enter fun fact">
+        <button onclick="addCarFromInput();">
+            Add Car
         </button>
         <button onclick="removeLastCard();">
-            Remove A Card!
+            Remove Car
         </button>
     </div>
 </body>
